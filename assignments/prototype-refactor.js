@@ -194,23 +194,23 @@ function GameObject(info) {
   // * Give the Hero and Villains different methods that could be used to remove health points from objects which could result in destruction if health gets to 0 or drops below 0;
   // * Create two new objects, one a villain and one a hero and fight it out with methods!
   
-//   function Villain(weak){
-//     Humanoid.call(this, weak);
-//   }
+  function Villain(weak){
+    Humanoid.call(this, weak);
+  }
   
-//   Villain.prototype.strike = function(){
-//     return Math.random(-2, -10), 1;
-//   }
-//   Villain.prototype = Object.create(Humanoid.prototype)
+  Villain.prototype.strike = function(){
+    return Math.random(-2, -10), 1;
+  }
+  Villain.prototype = Object.create(Humanoid.prototype)
   
   
-//   function Hero(strong){
-//     Humanoid.call(this, strong);
-//   }
+  function Hero(strong){
+    Humanoid.call(this, strong);
+  }
   
-//   Hero.prototype.punch = function(){
-//     return Math.random(-2, -10), 1;
-//   }
+  Hero.prototype.punch = function(){
+    return Math.random(-2, -10), 1;
+  }
   
-//   Hero.prototype = Object.create(Humanoid.prototype)
+  Hero.prototype = Object.create(Humanoid.prototype)
   
