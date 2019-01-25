@@ -2,70 +2,70 @@
 //first commit
 
 class Person {
-  constructor(things){
-    this.name=things.name;
-    this.location=things.location;
-    this.age=things.age;
-    this.gender=things.gender;
+  constructor(things) {
+    this.name = things.name;
+    this.location = things.location;
+    this.age = things.age;
+    this.gender = things.gender;
   }
   speak() {
     console.log(`Hello, my name is ${this.name}, I am from ${this.location}`)
   }
 }
 
-class Instructor extends Person{
-  constructor(stuff){
+class Instructor extends Person {
+  constructor(stuff) {
     super(stuff);
-    this.speciality=stuff.specialty;
-    this.favLanguage=stuff.favLanguage;
-    this.catchPhrase=stuff.catchPhrase;
+    this.speciality = stuff.specialty;
+    this.favLanguage = stuff.favLanguage;
+    this.catchPhrase = stuff.catchPhrase;
   }
   demo(subject) {
     console.log(`Today we learn about ${subject}`)
   }
-  grade(student){
-    while (student.grade <70){
-    student.grade+=Math.floor(Math.random() * 30) - 10;
-    console.log(student.grade);
+  grade(student) {
+    while (student.grade < 70) {
+      student.grade += Math.floor(Math.random() * 30) - 10;
+      console.log(student.grade);
     }
   }
- 
-  }
+
+}
 
 class Student extends Person {
-  constructor(tools){
+  constructor(tools) {
     super(tools);
-    this.previousBackground=tools.previousBackground;
-    this.className=tools.className;
-    this.favSubjects=tools.favSubjects;
-    this.grade=tools.grade;
+    this.previousBackground = tools.previousBackground;
+    this.className = tools.className;
+    this.favSubjects = tools.favSubjects;
+    this.grade = tools.grade;
   }
   listsSubjects() {
     console.log(`${this.favSubjects}`)
   }
-  PRAssignment(subject){
+  PRAssignment(subject) {
     console.log(`${this.name} has submitted a PR for ${subject}`)
   }
-  sprintChallenge(subject){
+  sprintChallenge(subject) {
     console.log(`${this.name} has begun sprint challenge on ${subject}`)
   }
-  graduate(){
-    if (this.grade>=70){
+  graduate() {
+    if (this.grade >= 70) {
       console.log(`${this.name} graduates from Lambda!`)
     }
-}
+  }
 }
 
 class ProjectManagers extends Instructor {
-  constructor(atts){
+  constructor(atts) {
     super(atts);
-    this.gradClassName=atts.gradClassName;
-    this.favInstructor=atts.favInstructor;
+    this.gradClassName = atts.gradClassName;
+    this.favInstructor = atts.favInstructor;
   }
   standup(channel) {
     console.log(`${this.name} announces to ${channel}, @channel standup times!`)
   }
-  debugsCode(student, subject){
+  debugsCode(student, subject) {
     console.log(`${this.name} debugs ${student.name}'s code on ${subject}`)
   }
 }
@@ -187,8 +187,3 @@ console.log(vincent.grade);
 peggy.grade(vincent);
 console.log(vincent.grade);
 vincent.graduate();
-
-
-
-
-

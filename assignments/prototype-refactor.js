@@ -1,12 +1,11 @@
-
 class GameObject {
-  constructor(info){
-  this.createdAt = info.createdAt;
-  this.dimensions = info.dimensions;
-  this.name=info.name;
+  constructor(info) {
+    this.createdAt = info.createdAt;
+    this.dimensions = info.dimensions;
+    this.name = info.name;
   }
-  destroy(){
-      return `${this.name} was removed from the game`;
+  destroy() {
+    return `${this.name} was removed from the game`;
   };
 }
 
@@ -21,13 +20,13 @@ class GameObject {
 */
 
 class CharacterStats extends GameObject {
-    constructor(stats){
-        super(stats);
-  this.healthPoints = stats.healthPoints;
-}
-takeDamage(){
-  return `${this.name} took damage.`;
-};
+  constructor(stats) {
+    super(stats);
+    this.healthPoints = stats.healthPoints;
+  }
+  takeDamage() {
+    return `${this.name} took damage.`;
+  };
 }
 
 /*
@@ -42,17 +41,17 @@ takeDamage(){
 
 
 
-class Humanoid extends CharacterStats{
-    constructor(atts){
-        super(atts);
-  this.team = atts.team;
-  this.weapons = atts.weapons;
-  this.language = atts.language;
-}
+class Humanoid extends CharacterStats {
+  constructor(atts) {
+    super(atts);
+    this.team = atts.team;
+    this.weapons = atts.weapons;
+    this.language = atts.language;
+  }
 
-greet(){
-  return `${this.name} offers a greeting in ${this.language}`;
-};
+  greet() {
+    return `${this.name} offers a greeting in ${this.language}`;
+  };
 }
 
 // ***********************************************************************//
@@ -63,108 +62,108 @@ greet(){
 
 
 class Villain extends Humanoid {
-  constructor(weak){
-      super(weak);
-  this.taunt = weak.taunt;
-  this.secretWeapon = weak.secretWeapon;
-}
-
-normalAttack(target) {
-  let damage = Math.floor(Math.random() * Math.floor(this.healthPoints / 3)); // I set the max damage to the Villain's hp / 4 - the less healthy the attacker, the less damage they can inflict.
-  let plural = "points";
-  if (damage === 1) {
-    plural = "point"; // It's nice to see "1 health point" and not "1 health points".
+  constructor(weak) {
+    super(weak);
+    this.taunt = weak.taunt;
+    this.secretWeapon = weak.secretWeapon;
   }
-  target.healthPoints -= damage;
-  console.log(
-    `${this.name} hits ${target.name} with a ${
+
+  normalAttack(target) {
+    let damage = Math.floor(Math.random() * Math.floor(this.healthPoints / 3)); // I set the max damage to the Villain's hp / 4 - the less healthy the attacker, the less damage they can inflict.
+    let plural = "points";
+    if (damage === 1) {
+      plural = "point"; // It's nice to see "1 health point" and not "1 health points".
+    }
+    target.healthPoints -= damage;
+    console.log(
+      `${this.name} hits ${target.name} with a ${
       this.weapons[
         Math.floor(Math.random() * Math.floor(this.weapons.length)) // This code chooses randomly from among the attacking character's weapons.
       ]
     } for ${damage} health ${plural}!`
-  );
-  if (target.healthPoints <= 0) {
-    console.log(`${target.name} has sustained mortal damage!`);
-    console.log(target.destroy());
-  } else {
-    console.log(`${target.name} lives to fight on!`);
-  }
-};
-specialAttack(target) {
-  let damage = Math.floor(Math.random() * Math.floor(this.healthPoints / 3)); // The special attack is more powerful.
-  let plural = "points";
-  if (damage === 1) {
-    plural = "point";
-  }
-  target.healthPoints -= damage;
-  console.log(
-    `${this.name} hits ${target.name} with a ${
+    );
+    if (target.healthPoints <= 0) {
+      console.log(`${target.name} has sustained mortal damage!`);
+      console.log(target.destroy());
+    } else {
+      console.log(`${target.name} lives to fight on!`);
+    }
+  };
+  specialAttack(target) {
+    let damage = Math.floor(Math.random() * Math.floor(this.healthPoints / 3)); // The special attack is more powerful.
+    let plural = "points";
+    if (damage === 1) {
+      plural = "point";
+    }
+    target.healthPoints -= damage;
+    console.log(
+      `${this.name} hits ${target.name} with a ${
       this.secretWeapon
     } for ${damage} health ${plural}!`
-  );
-  if (target.healthPoints <= 0) {
-    console.log(`${target.name} has sustained mortal damage!`);
-    console.log(target.destroy());
-  } else {
-    console.log(`${target.name} lives to fight on!`);
-  }
-};
+    );
+    if (target.healthPoints <= 0) {
+      console.log(`${target.name} has sustained mortal damage!`);
+      console.log(target.destroy());
+    } else {
+      console.log(`${target.name} lives to fight on!`);
+    }
+  };
 
-  speakTaunt(){
-  console.log(`${this.name}: ${this.taunt}`);
-};
+  speakTaunt() {
+    console.log(`${this.name}: ${this.taunt}`);
+  };
 }
 
 class Hero extends Humanoid {
-  constructor(strong){
-      super(strong);
-  this.battleCry = strong.battleCry;
-  this.superWeapon = strong.superWeapon;
-}
+  constructor(strong) {
+    super(strong);
+    this.battleCry = strong.battleCry;
+    this.superWeapon = strong.superWeapon;
+  }
 
   speakBattleCry() {
-  console.log(`${this.name}: ${this.battleCry}`);
-};
+    console.log(`${this.name}: ${this.battleCry}`);
+  };
 
-normalAttack(target) {
-  let damage = Math.floor(Math.random() * Math.floor(this.healthPoints / 2.25)); // The Hero's max damage is hp / 2 (instead of the Villain's hp / 4). The gods smile upon the Hero!
-  let plural = "points";
-  if (damage === 1) {
-    plural = "point";
-  }
-  target.healthPoints -= damage;
-  console.log(
-    `${this.name} hits ${target.name} with a ${
+  normalAttack(target) {
+    let damage = Math.floor(Math.random() * Math.floor(this.healthPoints / 2.25)); // The Hero's max damage is hp / 2 (instead of the Villain's hp / 4). The gods smile upon the Hero!
+    let plural = "points";
+    if (damage === 1) {
+      plural = "point";
+    }
+    target.healthPoints -= damage;
+    console.log(
+      `${this.name} hits ${target.name} with a ${
       this.weapons[Math.floor(Math.random() * Math.floor(this.weapons.length))]
     } for ${damage} health ${plural}!`
-  );
-  if (target.healthPoints <= 0) {
-    console.log(`${target.name} has sustained mortal damage!`);
-    console.log(target.destroy());
-  } else {
-    console.log(`${target.name} lives to fight on!`);
-  }
-};
+    );
+    if (target.healthPoints <= 0) {
+      console.log(`${target.name} has sustained mortal damage!`);
+      console.log(target.destroy());
+    } else {
+      console.log(`${target.name} lives to fight on!`);
+    }
+  };
 
-specialAttack(target) {
-  let damage = Math.floor(Math.random() * Math.floor(this.healthPoints / 1.5));
-  let plural = "points";
-  if (damage === 1) {
-    plural = "point";
-  }
-  target.healthPoints -= damage;
-  console.log(
-    `${this.name} hits ${target.name} with a ${
+  specialAttack(target) {
+    let damage = Math.floor(Math.random() * Math.floor(this.healthPoints / 1.5));
+    let plural = "points";
+    if (damage === 1) {
+      plural = "point";
+    }
+    target.healthPoints -= damage;
+    console.log(
+      `${this.name} hits ${target.name} with a ${
       this.superWeapon
     } for ${damage} health ${plural}!`
-  );
-  if (target.healthPoints <= 0) {
-    console.log(`${target.name} has sustained mortal damage!`);
-    console.log(target.destroy());
-  } else {
-    console.log(`${target.name} lives to fight on!`);
-  }
-};
+    );
+    if (target.healthPoints <= 0) {
+      console.log(`${target.name} has sustained mortal damage!`);
+      console.log(target.destroy());
+    } else {
+      console.log(`${target.name} lives to fight on!`);
+    }
+  };
 }
 
 
@@ -186,7 +185,7 @@ console.log("\n");
 function epicBattle(hero, villain) {
   console.log(
     `Here begins the epic battle between ${hero.name} and ${villain.name}!` +
-      "\n"
+    "\n"
   );
   console.log(
     `Will ${villain.name} prove victorious, or will ${hero.name}'s ${
@@ -237,7 +236,7 @@ function epicBattle(hero, villain) {
 
 
 
-  
+
 const mage = new Humanoid({
   createdAt: new Date(),
   dimensions: {
