@@ -23,7 +23,14 @@ class Instructor extends Person{
   demo(subject) {
     console.log(`Today we learn about ${subject}`)
   }
-}
+  grade(student){
+    while (student.grade <70){
+    student.grade+=Math.floor(Math.random() * 30) - 10;
+    console.log(student.grade);
+    }
+  }
+ 
+  }
 
 class Student extends Person {
   constructor(tools){
@@ -31,6 +38,7 @@ class Student extends Person {
     this.previousBackground=tools.previousBackground;
     this.className=tools.className;
     this.favSubjects=tools.favSubjects;
+    this.grade=tools.grade;
   }
   listsSubjects() {
     console.log(`${this.favSubjects}`)
@@ -41,6 +49,11 @@ class Student extends Person {
   sprintChallenge(subject){
     console.log(`${this.name} has begun sprint challenge on ${subject}`)
   }
+  graduate(){
+    if (this.grade>=70){
+      console.log(`${this.name} graduates from Lambda!`)
+    }
+}
 }
 
 class ProjectManagers extends Instructor {
@@ -117,7 +130,8 @@ const carmella = new Student({
   gender: 'female',
   previousBackground: 'waitress',
   className: 'WEB15',
-  favSubjects: ['Math', 'Science']
+  favSubjects: ['Math', 'Science'],
+  grade: 50
 });
 
 const andrew = new Student({
@@ -127,7 +141,8 @@ const andrew = new Student({
   gender: 'male',
   previousBackground: 'student',
   className: 'WEB16',
-  favSubjects: ['Political Science', 'History']
+  favSubjects: ['Political Science', 'History'],
+  grade: 25
 });
 
 const vincent = new Student({
@@ -137,7 +152,8 @@ const vincent = new Student({
   gender: 'male',
   previousBackground: 'Sales',
   className: 'WEB17',
-  favSubjects: ['Science', 'Math']
+  favSubjects: ['Science', 'Math'],
+  grade: 35
 });
 const ashley = new ProjectManagers({
   name: 'Ashley',
@@ -166,7 +182,13 @@ const christina = new ProjectManagers({
 vincent.listsSubjects();
 christina.standup('web17');
 console.log(ashley.name)
-console.log(mary.age)
+console.log(mary.age);
+console.log(vincent.grade);
+peggy.grade(vincent);
+console.log(vincent.grade);
+vincent.graduate();
+
+
 
 
 
